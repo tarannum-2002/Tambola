@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 
 class AppTest {
     @Test
-    fun `should pass when gets Top rows announced`()
+    fun `should pass when top row gets completed`()
     {
         val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48)
         val ticket = arrayListOf(
@@ -18,4 +18,5 @@ class AppTest {
         )
         assertTrue(TopRowClaimValidator(ticket, numbersAnnounced))
     }
+
 }

@@ -39,13 +39,13 @@ fun TopRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<In
 
     var ClaimSupposedToBeAnnounced = false
     var Claim = false
-    var turn =0;
+    var turn =0
 
     for (num in numbersAnnounced){
         turn++
         val result = markIfPresent(ticket, num)
         if(result!=-1 && result ==0 ){
-            firstRowCounter++;
+            firstRowCounter++
 
         }
 
@@ -72,7 +72,7 @@ fun BottomRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList
     var thirdRowCounter = 0
     var ClaimSupposedToBeAnnounced = false
     var Claim = false
-    var turn =0;
+    var turn =0
 
     for (num in numbersAnnounced){
         turn++
@@ -103,13 +103,13 @@ fun FirstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
 
     var ClaimSupposedToBeAnnounced = false
     var Claim = false
-    var turn =0;
+    var turn =0
 
     for (num in numbersAnnounced){
         turn++
         val result = markIfPresent(ticket, num)
         if(result!=-1){
-            if(result==0) Counter++;
+            if(result==0) Counter++
 
         }
 
