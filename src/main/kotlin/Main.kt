@@ -9,14 +9,20 @@ fun main() {
 
     val claim = "Top Row"
 
-    val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48, 12 )
 
-    TopRowClaimValidator(ticket, numbersAnnounced)
+    val filteredList = ticket.map { sublist ->
+        sublist.filter { it != Int.MAX_VALUE }
+    }
+
+    val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48)
+
+    if(TopRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
+    else println("claim rejected")
 
 
 }
 
-fun TopRowClaimValidator(ticket: ArrayList<ArrayList<Int>>, numbersAnnounced: ArrayList<Int>) : Boolean{
+fun TopRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>) : Boolean{
     var firstRowCounter = 0
     var secRowCounter = 0
     var thirdRowCounter = 0
@@ -33,7 +39,7 @@ fun TopRowClaimValidator(ticket: ArrayList<ArrayList<Int>>, numbersAnnounced: Ar
             else if(result==2) thirdRowCounter++
         }
 
-        if((turn!=numbersAnnounced.size-1) && (firstRowCounter==5 || secRowCounter==5 || thirdRowCounter== 5)){
+        if((turn!=numbersAnnounced.size) && (firstRowCounter==5 || secRowCounter==5 || thirdRowCounter== 5)){
             ClaimSupposedToBeAnnounced=true
         }
 
@@ -50,7 +56,7 @@ fun TopRowClaimValidator(ticket: ArrayList<ArrayList<Int>>, numbersAnnounced: Ar
 
 }
 
-fun markIfPresent(ticket: ArrayList<ArrayList<Int>>, num: Int): Int {
+fun markIfPresent(ticket: List<List<Int>>, num: Int): Int {
     for (list in ticket){
         var listCounter=0
         for (block in list){
