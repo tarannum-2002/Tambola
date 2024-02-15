@@ -17,25 +17,36 @@ fun main() {
 }
 
 fun TopRowClaimValidator(ticket: ArrayList<ArrayList<Int>>, numbersAnnounced: ArrayList<Int>) {
-    val firstRowCounter = 0
-    val secRowCounter = 0
-    val thirdRowCounter = 0
+    var firstRowCounter = 0
+    var secRowCounter = 0
+    var thirdRowCounter = 0
+    var ClaimSupposedToBeAnnounced = false
 
     for (num in numbersAnnounced){
-        if(markIfPresent(ticket, num)){
-
+        val result = markIfPresent(ticket, num)
+        if(result!=-1){
+            if(result==0) firstRowCounter++;
+            else if (result==1) secRowCounter++;
+            else if(result==2) thirdRowCounter++
         }
+
+        if(firstRowCounter==5 || secRowCounter==5 || thirdRowCounter== 5)
+
+
     }
 
 }
 
-fun markIfPresent(ticket: ArrayList<ArrayList<Int>>, num: Int): Boolean {
+fun markIfPresent(ticket: ArrayList<ArrayList<Int>>, num: Int): Int {
     for (list in ticket){
+        var listCounter=0
         for (block in list){
             if(block==num){
-                return true
+                return listCounter
             }
         }
+        listCounter++
     }
+    return -1
 
 }
