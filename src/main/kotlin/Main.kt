@@ -11,5 +11,31 @@ fun main() {
 
     val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48, 12 )
 
+    TopRowClaimValidator(ticket, numbersAnnounced)
+
+
+}
+
+fun TopRowClaimValidator(ticket: ArrayList<ArrayList<Int>>, numbersAnnounced: ArrayList<Int>) {
+    val firstRowCounter = 0
+    val secRowCounter = 0
+    val thirdRowCounter = 0
+
+    for (num in numbersAnnounced){
+        if(markIfPresent(ticket, num)){
+
+        }
+    }
+
+}
+
+fun markIfPresent(ticket: ArrayList<ArrayList<Int>>, num: Int): Boolean {
+    for (list in ticket){
+        for (block in list){
+            if(block==num){
+                return true
+            }
+        }
+    }
 
 }
