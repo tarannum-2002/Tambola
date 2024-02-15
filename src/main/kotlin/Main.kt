@@ -21,6 +21,7 @@ fun TopRowClaimValidator(ticket: ArrayList<ArrayList<Int>>, numbersAnnounced: Ar
     var secRowCounter = 0
     var thirdRowCounter = 0
     var ClaimSupposedToBeAnnounced = false
+    var ClaimRejected = false
 
     for (num in numbersAnnounced){
         val result = markIfPresent(ticket, num)
@@ -30,10 +31,13 @@ fun TopRowClaimValidator(ticket: ArrayList<ArrayList<Int>>, numbersAnnounced: Ar
             else if(result==2) thirdRowCounter++
         }
 
-        if(firstRowCounter==5 || secRowCounter==5 || thirdRowCounter== 5)
-
+        if(firstRowCounter==5 || secRowCounter==5 || thirdRowCounter== 5){
+            ClaimSupposedToBeAnnounced=true
+        }
 
     }
+
+    if(ClaimSupposedToBeAnnounced==false && ClaimRejected== )
 
 }
 
