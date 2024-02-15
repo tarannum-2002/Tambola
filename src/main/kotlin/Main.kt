@@ -16,15 +16,59 @@ fun main() {
 
     val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48)
 
-    if(TopRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
-    else println("claim rejected")
+    if(claim=="Top Row"){
+        if(TopRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
+        else println("claim rejected")
+    }
+    else if(claim=="Bottom Row"){
+        if(BottomRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
+        else println("claim rejected")
+    }
+    else{
+        if(FirstFiveValidator(filteredList, numbersAnnounced)) println("claim accepted")
+        else println("claim rejected")
+    }
+
+
 
 
 }
 
 fun TopRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>) : Boolean{
     var firstRowCounter = 0
-    var secRowCounter = 0
+
+    var ClaimSupposedToBeAnnounced = false
+    var Claim = false
+    var turn =0;
+
+    for (num in numbersAnnounced){
+        turn++
+        val result = markIfPresent(ticket, num)
+        if(result!=-1 && result ==0 ){
+            firstRowCounter++;
+
+        }
+
+        if((turn!=numbersAnnounced.size) && firstRowCounter==5){
+            ClaimSupposedToBeAnnounced=true
+        }
+
+    }
+
+    if(firstRowCounter==5 ){
+        Claim=true
+    }
+
+    if(ClaimSupposedToBeAnnounced==false && Claim==true ){
+        return true
+    }
+    return false
+
+}
+
+fun BottomRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>) : Boolean{
+
+
     var thirdRowCounter = 0
     var ClaimSupposedToBeAnnounced = false
     var Claim = false
@@ -33,19 +77,49 @@ fun TopRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<In
     for (num in numbersAnnounced){
         turn++
         val result = markIfPresent(ticket, num)
-        if(result!=-1){
-            if(result==0) firstRowCounter++;
-            else if (result==1) secRowCounter++;
-            else if(result==2) thirdRowCounter++
+        if(result!=-1 && result==2){
+            thirdRowCounter++
         }
 
-        if((turn!=numbersAnnounced.size) && (firstRowCounter==5 || secRowCounter==5 || thirdRowCounter== 5)){
+        if((turn!=numbersAnnounced.size) &&  thirdRowCounter== 5){
             ClaimSupposedToBeAnnounced=true
         }
 
     }
 
-    if(firstRowCounter==5 || secRowCounter==5 || thirdRowCounter== 5){
+    if(thirdRowCounter== 5){
+        Claim=true
+    }
+
+    if(ClaimSupposedToBeAnnounced==false && Claim==true ){
+        return true
+    }
+    return false
+
+}
+
+fun FirstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>) : Boolean{
+    var Counter = 0
+
+    var ClaimSupposedToBeAnnounced = false
+    var Claim = false
+    var turn =0;
+
+    for (num in numbersAnnounced){
+        turn++
+        val result = markIfPresent(ticket, num)
+        if(result!=-1){
+            if(result==0) Counter++;
+
+        }
+
+        if((turn!=numbersAnnounced.size) && Counter==5 ){
+            ClaimSupposedToBeAnnounced=true
+        }
+
+    }
+
+    if(Counter==5){
         Claim=true
     }
 
