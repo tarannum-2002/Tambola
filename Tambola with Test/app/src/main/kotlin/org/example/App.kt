@@ -17,7 +17,7 @@ fun main() {
     val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48)
 
     if (claim == "Top Row") {
-        if (TopRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
+        if (topRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
         else println("claim rejected")
     } else if (claim == "Bottom Row") {
         if (bottomRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
@@ -30,7 +30,7 @@ fun main() {
 
 }
 
-fun TopRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>): Boolean {
+fun topRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>): Boolean {
     var firstRowCounter = 0
 
     var claimSupposedToBeAnnounced = false
@@ -55,7 +55,7 @@ fun TopRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<In
         claim = true
     }
 
-    if (claimSupposedToBeAnnounced == false && claim == true) {
+    if (!claimSupposedToBeAnnounced && claim) {
         return true
     }
     return false
@@ -87,7 +87,7 @@ fun bottomRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList
         claim = true
     }
 
-    if (claimSupposedToBeAnnounced == false && claim == true) {
+    if (!claimSupposedToBeAnnounced && claim) {
         return true
     }
     return false
@@ -119,7 +119,7 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
         claim = true
     }
 
-    if (claimSupposedToBeAnnounced == false && claim == true) {
+    if (!claimSupposedToBeAnnounced && claim) {
         return true
     }
     return false
@@ -128,13 +128,11 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
 
 fun markIfPresent(ticket: List<List<Int>>, num: Int): Int {
     for (list in ticket) {
-        var listCounter = 0
-        for (block in list) {
+        for ((listCounter, block) in list.withIndex()) {
             if (block == num) {
                 return listCounter
             }
         }
-        listCounter++
     }
     return -1
 
