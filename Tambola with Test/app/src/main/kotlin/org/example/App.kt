@@ -20,6 +20,9 @@ fun validateClaim(
         "Top Row"-> {
             rowClaimValidator(ticket, numbersAnnounced, 0)
         }
+        "Middle Row" -> {
+            rowClaimValidator(ticket, numbersAnnounced, 1)
+        }
         "Bottom Row" -> {
             rowClaimValidator(ticket, numbersAnnounced, 2)
         }
@@ -36,7 +39,7 @@ fun rowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>,
     if (markIfPresent(ticket, numbersAnnounced.last()) != rowIndex) return false
     for (num in numbersAnnounced) {
         turn++
-        val result = markIfPresent(ticket, num)
+    val result = markIfPresent(ticket, num)
         if (result == rowIndex) {
             firstRowCounter++
         }
@@ -59,7 +62,6 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
         if (result != -1) {
             counter++
         }
-
         if ((turn == numbersAnnounced.size) && counter == 5) {
             claim = true
         }
