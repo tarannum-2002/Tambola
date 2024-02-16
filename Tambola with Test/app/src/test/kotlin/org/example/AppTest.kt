@@ -4,8 +4,32 @@
 package org.example
 
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class AppTest {
+    @Test
+    fun `should pass if a number is present in the function`()
+    {
+        val numbersAnnounced = 4
+        val ticket = arrayListOf(
+            arrayListOf(4,16,48,63,76),
+            arrayListOf(7,23,38,52,80),
+            arrayListOf(9,25,56,64,83)
+        )
+        assertEquals(0,markIfPresent(ticket, numbersAnnounced))
 
+    }
+    @Test
+    fun `should pass when top row gets completed`()
+    {
+        val numbersAnnounced = arrayListOf(9, 4, 16, 63, 48, 76)
+        val ticket = arrayListOf(
+            arrayListOf(4,16,48,63,76),
+            arrayListOf(7,23,38,52,80),
+            arrayListOf(9,25,56,64,83)
+        )
+        assertTrue(topRowClaimValidator(ticket, numbersAnnounced))
+
+    }
 }
