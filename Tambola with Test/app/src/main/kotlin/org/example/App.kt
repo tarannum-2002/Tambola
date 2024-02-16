@@ -26,8 +26,14 @@ fun validateClaim(
         "Bottom Row" -> {
             rowClaimValidator(ticket, numbersAnnounced, 2)
         }
-        else -> {
-            firstFiveValidator(ticket, numbersAnnounced)
+        "First Five" -> {
+            firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5)
+        }
+        "Full House"-> {
+            firstNumberOfMatchesValidator(ticket, numbersAnnounced, 15)
+        }
+        else->{
+            false
         }
     }
 }
@@ -51,7 +57,7 @@ fun rowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>,
     return claim
 }
 
-fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>): Boolean {
+fun firstNumberOfMatchesValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>, numberOfMatches: Int): Boolean {
     var counter = 0
     var claim = false
     var turn = 0
@@ -62,9 +68,10 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
         if (result != -1) {
             counter++
         }
-        if ((turn == numbersAnnounced.size) && counter == 5) {
+        if ((turn == numbersAnnounced.size) && counter == numberOfMatches) {
             claim = true
         }
+
 
     }
     return claim

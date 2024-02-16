@@ -32,7 +32,6 @@ class AppTest {
             arrayListOf(9,25,56,64,83)
         )
         assertEquals(-1,markIfPresent(ticket, numbersAnnounced))
-
     }
     @Test
     fun `should return true when correct top row claim is made`()
@@ -95,7 +94,7 @@ class AppTest {
             arrayListOf(7,23,38,52,80),
             arrayListOf(9,25,56,64,83)
         )
-        assertTrue(firstFiveValidator(ticket, numbersAnnounced))
+        assertTrue(firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5))
 
     }
 
@@ -108,7 +107,7 @@ class AppTest {
             arrayListOf(7,23,38,52,80),
             arrayListOf(9,25,56,64,83)
         )
-        assertFalse(firstFiveValidator(ticket, numbersAnnounced))
+        assertFalse(firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5))
 
     }
 
@@ -121,7 +120,7 @@ class AppTest {
             arrayListOf(7,23,38,52,80),
             arrayListOf(9,25,56,64,83)
         )
-        assertFalse(firstFiveValidator(ticket, numbersAnnounced))
+        assertFalse(firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5))
 
     }
 
@@ -159,6 +158,32 @@ class AppTest {
             arrayListOf(9,25,56,64,83)
         )
         assertTrue(validateClaim("Middle Row",ticket, numbersAnnounced))
+
+    }
+
+    @Test
+    fun `should return true for valid full house claim`()
+    {
+        val numbersAnnounced = arrayListOf(4,16,48,63,76,7,23,38,52,80,9,25,56,64,83)
+        val ticket = arrayListOf(
+            arrayListOf(4,16,48,63,76),
+            arrayListOf(7,23,38,52,80),
+            arrayListOf(9,25,56,64,83)
+        )
+        assertTrue(validateClaim("Full House",ticket, numbersAnnounced))
+
+    }
+
+    @Test
+    fun `should return false for invalid full house claim`()
+    {
+        val numbersAnnounced = arrayListOf(4,16,48,63,76,7,23,38,52,80,9,25,56)
+        val ticket = arrayListOf(
+            arrayListOf(4,16,48,63,76),
+            arrayListOf(7,23,38,52,80),
+            arrayListOf(9,25,56,64,83)
+        )
+        assertFalse(validateClaim("Full House",ticket, numbersAnnounced))
 
     }
 }
