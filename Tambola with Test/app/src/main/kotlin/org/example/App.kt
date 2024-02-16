@@ -34,7 +34,7 @@ fun topRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<In
     var claim = false
     var turn = 0
 
-    if(markIfPresent(ticket,numbersAnnounced.last())!=0)return claim
+    if(markIfPresent(ticket,numbersAnnounced.last())!=0)return false
     for (num in numbersAnnounced) {
         turn++
         val result = markIfPresent(ticket, num)
@@ -55,7 +55,7 @@ fun bottomRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList
     var claim = false
     var turn = 0
 
-    if(markIfPresent(ticket,numbersAnnounced.last())!=2)return claim
+    if(markIfPresent(ticket,numbersAnnounced.last())!=2)return false
     for (num in numbersAnnounced) {
         turn++
         val result = markIfPresent(ticket, num)
@@ -68,10 +68,7 @@ fun bottomRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList
     }
 
 
-    if (claim) {
-        return true
-    }
-    return false
+    return claim
 
 }
 
@@ -80,7 +77,7 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
 
     var claim = false
     var turn = 0
-    if(markIfPresent(ticket,numbersAnnounced.last())==-1)return claim
+    if(markIfPresent(ticket,numbersAnnounced.last())==-1)return false
     for (num in numbersAnnounced) {
         turn++
         val result = markIfPresent(ticket, num)
@@ -94,25 +91,19 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
 
     }
 
-    if (claim) {
-        return true
-    }
-
-    return false
+    return claim
 
 }
 
 
 
 fun markIfPresent(ticket: List<List<Int>>, num: Int): Int {
-    var listCounter = 0
-    for (list in ticket) {/**/
+    for ((listCounter, list) in ticket.withIndex()) {
         for (block in list) {
             if (block == num) {
                 return listCounter
             }
         }
-        listCounter++
     }
     return -1
 
