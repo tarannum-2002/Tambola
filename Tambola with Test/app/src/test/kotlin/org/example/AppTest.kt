@@ -125,4 +125,16 @@ class AppTest {
 
     }
 
+    @Test
+    fun `should return true for any valid claimed`()
+    {
+        val numbersAnnounced = arrayListOf(7, 25, 56, 64, 41, 83, 77)
+        val ticket = arrayListOf(
+            arrayListOf(4,16,48,63,76),
+            arrayListOf(7,23,38,52,80),
+            arrayListOf(9,25,56,64,83)
+        )
+        assertFalse(validateClaim("Top Row",ticket, numbersAnnounced))
+
+    }
 }
