@@ -32,4 +32,17 @@ class AppTest {
         assertTrue(topRowClaimValidator(ticket, numbersAnnounced))
 
     }
+
+    @Test
+    fun `should pass when bottom row gets completed`()
+    {
+        val numbersAnnounced = arrayListOf(9, 25, 56, 64, 48, 83)
+        val ticket = arrayListOf(
+            arrayListOf(4,16,48,63,76),
+            arrayListOf(7,23,38,52,80),
+            arrayListOf(9,25,56,64,83)
+        )
+        assertTrue(bottomRowClaimValidator(ticket, numbersAnnounced))
+
+    }
 }
