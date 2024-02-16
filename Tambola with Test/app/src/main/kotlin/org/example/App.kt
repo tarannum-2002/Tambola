@@ -6,13 +6,9 @@ fun main() {
         arrayListOf(7, 23, 38, 52, 80),
         arrayListOf(9, 25, 56, 64, 83)
     )
-
     val claim = "Top Row"
-
     val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48)
-
     validateClaim(claim, ticket, numbersAnnounced)
-
 }
 
 fun validateClaim(
@@ -35,10 +31,8 @@ fun validateClaim(
 
 fun topRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>): Boolean {
     var firstRowCounter = 0
-
     var claim = false
     var turn = 0
-
     if (markIfPresent(ticket, numbersAnnounced.last()) != 0) return false
     for (num in numbersAnnounced) {
         turn++
@@ -64,22 +58,18 @@ fun bottomRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList
     for (num in numbersAnnounced) {
         turn++
         val result = markIfPresent(ticket, num)
-        if (result != -1 && result == 2) {
+        if (result == 2) {
             thirdRowCounter++
         }
         if ((turn == numbersAnnounced.size) && thirdRowCounter == 5) {
             claim = true
         }
     }
-
-
     return claim
-
 }
 
 fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>): Boolean {
     var counter = 0
-
     var claim = false
     var turn = 0
     if (markIfPresent(ticket, numbersAnnounced.last()) == -1) return false
@@ -95,9 +85,7 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
         }
 
     }
-
     return claim
-
 }
 
 
@@ -110,5 +98,4 @@ fun markIfPresent(ticket: List<List<Int>>, num: Int): Int {
         }
     }
     return -1
-
 }
