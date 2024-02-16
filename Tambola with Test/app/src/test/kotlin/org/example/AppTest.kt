@@ -43,7 +43,7 @@ class AppTest {
             arrayListOf(7,23,38,52,80),
             arrayListOf(9,25,56,64,83)
         )
-        assertTrue(topRowClaimValidator(ticket, numbersAnnounced))
+        assertTrue(rowClaimValidator(ticket, numbersAnnounced,0))
 
     }
 
@@ -56,7 +56,7 @@ class AppTest {
             arrayListOf(7,23,38,52,80),
             arrayListOf(9,25,56,64,83)
         )
-        assertTrue(bottomRowClaimValidator(ticket, numbersAnnounced))
+        assertTrue(rowClaimValidator(ticket, numbersAnnounced,2))
 
     }
 
@@ -69,7 +69,7 @@ class AppTest {
             arrayListOf(7,23,38,52,80),
             arrayListOf(9,25,56,64,83)
         )
-        assertFalse(topRowClaimValidator(ticket, numbersAnnounced))
+        assertFalse(rowClaimValidator(ticket, numbersAnnounced,0))
 
     }
 
@@ -82,7 +82,7 @@ class AppTest {
             arrayListOf(7,23,38,52,80),
             arrayListOf(9,25,56,64,83)
         )
-        assertFalse(bottomRowClaimValidator(ticket, numbersAnnounced))
+        assertFalse(rowClaimValidator(ticket, numbersAnnounced,2))
 
     }
 

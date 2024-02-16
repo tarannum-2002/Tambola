@@ -17,11 +17,11 @@ fun validateClaim(
     numbersAnnounced: ArrayList<Int>
 ):Boolean {
     return when (claim) {
-        "Top Row" -> {
-            topRowClaimValidator(ticket, numbersAnnounced)
+        "Top Row"-> {
+            rowClaimValidator(ticket, numbersAnnounced, 0)
         }
         "Bottom Row" -> {
-            bottomRowClaimValidator(ticket, numbersAnnounced)
+            rowClaimValidator(ticket, numbersAnnounced, 2)
         }
         else -> {
             firstFiveValidator(ticket, numbersAnnounced)
@@ -29,40 +29,20 @@ fun validateClaim(
     }
 }
 
-fun topRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>): Boolean {
+fun rowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>,rowIndex :Int): Boolean {
     var firstRowCounter = 0
     var claim = false
     var turn = 0
-    if (markIfPresent(ticket, numbersAnnounced.last()) != 0) return false
+    if (markIfPresent(ticket, numbersAnnounced.last()) != rowIndex) return false
     for (num in numbersAnnounced) {
         turn++
         val result = markIfPresent(ticket, num)
-        if (result == 0) {
+        if (result == rowIndex) {
             firstRowCounter++
         }
         if ((turn == numbersAnnounced.size) && firstRowCounter == 5) {
             claim = true
             break
-        }
-    }
-
-    return claim
-}
-
-fun bottomRowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>): Boolean {
-    var thirdRowCounter = 0
-    var claim = false
-    var turn = 0
-
-    if (markIfPresent(ticket, numbersAnnounced.last()) != 2) return false
-    for (num in numbersAnnounced) {
-        turn++
-        val result = markIfPresent(ticket, num)
-        if (result == 2) {
-            thirdRowCounter++
-        }
-        if ((turn == numbersAnnounced.size) && thirdRowCounter == 5) {
-            claim = true
         }
     }
     return claim
@@ -87,8 +67,6 @@ fun firstFiveValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>
     }
     return claim
 }
-
-
 fun markIfPresent(ticket: List<List<Int>>, num: Int): Int {
     for ((listCounter, list) in ticket.withIndex()) {
         for (block in list) {
