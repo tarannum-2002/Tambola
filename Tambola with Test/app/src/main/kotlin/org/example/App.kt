@@ -2,27 +2,24 @@ package org.example
 
 fun main() {
     val ticket = arrayListOf(
-        arrayListOf(4, 16, Int.MAX_VALUE, Int.MAX_VALUE, 48, Int.MAX_VALUE, 63, 76, Int.MAX_VALUE),
-        arrayListOf(7, Int.MAX_VALUE, 23, 38, Int.MAX_VALUE, 52, Int.MAX_VALUE, Int.MAX_VALUE, 80),
-        arrayListOf(9, Int.MAX_VALUE, 25, Int.MAX_VALUE, Int.MAX_VALUE, 56, 64, Int.MAX_VALUE, 83)
+        arrayListOf(4, 16, 48, 63, 76),
+        arrayListOf(7, 23, 38, 52, 80),
+        arrayListOf(9, 25, 56, 64, 83)
     )
 
     val claim = "Top Row"
 
-    val filteredList = ticket.map { sublist ->
-        sublist.filter { it != Int.MAX_VALUE }
-    }
 
     val numbersAnnounced = arrayListOf(90, 4, 46, 63, 89, 16, 76, 48)
 
     if (claim == "Top Row") {
-        if (topRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
+        if (topRowClaimValidator(ticket, numbersAnnounced)) println("claim accepted")
         else println("claim rejected")
     } else if (claim == "Bottom Row") {
-        if (bottomRowClaimValidator(filteredList, numbersAnnounced)) println("claim accepted")
+        if (bottomRowClaimValidator(ticket, numbersAnnounced)) println("claim accepted")
         else println("claim rejected")
     } else {
-        if (firstFiveValidator(filteredList, numbersAnnounced)) println("claim accepted")
+        if (firstFiveValidator(ticket, numbersAnnounced)) println("claim accepted")
         else println("claim rejected")
     }
 
