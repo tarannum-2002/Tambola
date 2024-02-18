@@ -175,16 +175,16 @@ class AppTest {
 
     }
 
-//    @Test
-//    fun `should return true if claim is early five and ticket has both early five and middle row`() {
-//        val numbersAnnounced = arrayListOf(4, 16, 48, 63, 76, 7, 23, 38, 52, 80)
-//        val ticket = arrayListOf(
-//            arrayListOf(4, 16, 48, 63, 76),
-//            arrayListOf(7, 23, 38, 52, 80),
-//            arrayListOf(9, 25, 56, 64, 83)
-//        )
-//        assertTrue(validateClaim("Early Five", ticket, numbersAnnounced))
-//    }
+    @Test
+    fun `should return false if claim is early five and ticket has both early five and middle row`() {
+        val numbersAnnounced = arrayListOf(4, 16, 48, 63, 76, 7, 23, 38, 52, 80)
+        val ticket = TambolaTicket(
+            firstRow = arrayListOf(4, 16, 48, 63, 76),
+            secondRow = arrayListOf(7, 23, 38, 52, 80),
+            lastRow = arrayListOf(9, 25, 56, 64, 83)
+        )
+        assertFalse(validateClaim("Early Five", ticket, numbersAnnounced))
+    }
 
     @Test
     fun `should return true if claim is middle row and ticket has both early five and middle row`() {

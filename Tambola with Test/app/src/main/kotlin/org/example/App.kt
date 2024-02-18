@@ -111,13 +111,4 @@ fun markIfPresent(tambolaTicket: TambolaTicket, num: Int): Int {
             -1
         }
     }
-
-//    for ((listCounter, list) in tambolaTicket.withIndex()) {
-//        for (block in list) {
-//            if (block == num) {
-//                return listCounter
-//            }
-//        }
-//    }
-//    return -1
 }
