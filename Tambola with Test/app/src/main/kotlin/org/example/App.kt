@@ -14,42 +14,47 @@ fun main() {
 fun validateClaim(
     claim: String,
     ticket: ArrayList<ArrayList<Int>>,
-    numbersAnnounced: ArrayList<Int>
-):Boolean {
+    numbersAnnounced: ArrayList<Int>,
+): Boolean {
     return when (claim) {
-        "Top Row"-> {
+        "Top Row" -> {
             rowClaimValidator(ticket, numbersAnnounced, 0)
         }
+
         "Middle Row" -> {
             rowClaimValidator(ticket, numbersAnnounced, 1)
         }
+
         "Bottom Row" -> {
             rowClaimValidator(ticket, numbersAnnounced, 2)
         }
+
         "First Five" -> {
             firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5)
         }
-        "Full House"-> {
+
+        "Full House" -> {
             firstNumberOfMatchesValidator(ticket, numbersAnnounced, 15)
         }
-        else->{
+
+        else -> {
             false
         }
     }
 }
 
-fun rowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>,rowIndex :Int): Boolean {
-    var firstRowCounter = 0
+fun rowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>, rowIndex: Int): Boolean {
+    var rowCounter = 0
     var claim = false
     var turn = 0
     if (markIfPresent(ticket, numbersAnnounced.last()) != rowIndex) return false
     for (num in numbersAnnounced) {
         turn++
-    val result = markIfPresent(ticket, num)
+        val result = markIfPresent(ticket, num)
         if (result == rowIndex) {
-            firstRowCounter++
+            rowCounter++
         }
-        if ((turn == numbersAnnounced.size) && firstRowCounter == 5) {
+        if ((turn == numbersAnnounced.size) && rowCounter == 5) {
             claim = true
             break
         }
@@ -57,7 +62,11 @@ fun rowClaimValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>,
     return claim
 }
 
-fun firstNumberOfMatchesValidator(ticket: List<List<Int>>, numbersAnnounced: ArrayList<Int>, numberOfMatches: Int): Boolean {
+fun firstNumberOfMatchesValidator(
+    ticket: List<List<Int>>,
+    numbersAnnounced: ArrayList<Int>,
+    numberOfMatches: Int,
+): Boolean {
     var counter = 0
     var claim = false
     var turn = 0
@@ -71,11 +80,10 @@ fun firstNumberOfMatchesValidator(ticket: List<List<Int>>, numbersAnnounced: Arr
         if ((turn == numbersAnnounced.size) && counter == numberOfMatches) {
             claim = true
         }
-
-
     }
     return claim
 }
+
 fun markIfPresent(ticket: List<List<Int>>, num: Int): Int {
     for ((listCounter, list) in ticket.withIndex()) {
         for (block in list) {
