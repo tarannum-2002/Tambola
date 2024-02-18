@@ -10,180 +10,190 @@ import kotlin.test.assertTrue
 
 class AppTest {
     @Test
-    fun `should return the correct index of row that contains the input number `()
-    {
+    fun `should return the correct index of row that contains the input number `() {
         val numbersAnnounced = 4
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertEquals(0,markIfPresent(ticket, numbersAnnounced))
+        assertEquals(0, markIfPresent(ticket, numbersAnnounced))
 
     }
 
     @Test
-    fun `should return negative one if ticket does not contains the input `()
-    {
+    fun `should return negative one if ticket does not contains the input `() {
         val numbersAnnounced = 20
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertEquals(-1,markIfPresent(ticket, numbersAnnounced))
+        assertEquals(-1, markIfPresent(ticket, numbersAnnounced))
     }
+
     @Test
-    fun `should return true when correct top row claim is made`()
-    {
+    fun `should return true when correct top row claim is made`() {
         val numbersAnnounced = arrayListOf(9, 4, 16, 63, 48, 76)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertTrue(rowClaimValidator(ticket, numbersAnnounced,0))
+        assertTrue(rowClaimValidator(ticket, numbersAnnounced, 0))
 
     }
 
     @Test
-    fun `should return true when correct bottom row claim is made`()
-    {
+    fun `should return true when correct bottom row claim is made`() {
         val numbersAnnounced = arrayListOf(9, 25, 56, 64, 48, 83)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertTrue(rowClaimValidator(ticket, numbersAnnounced,2))
+        assertTrue(rowClaimValidator(ticket, numbersAnnounced, 2))
 
     }
 
     @Test
-    fun `should return false when incorrect top row claim is made`()
-    {
-        val numbersAnnounced = arrayListOf(9, 4, 16, 63, 48, 76,23)
+    fun `should return false when incorrect top row claim is made`() {
+        val numbersAnnounced = arrayListOf(9, 4, 16, 63, 48, 76, 23)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertFalse(rowClaimValidator(ticket, numbersAnnounced,0))
+        assertFalse(rowClaimValidator(ticket, numbersAnnounced, 0))
 
     }
 
     @Test
-    fun `should return false when incorrect bottom row claim is made`()
-    {
-        val numbersAnnounced = arrayListOf(9, 25, 56, 64, 48, 83,12)
+    fun `should return false when incorrect bottom row claim is made`() {
+        val numbersAnnounced = arrayListOf(9, 25, 56, 64, 48, 83, 12)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertFalse(rowClaimValidator(ticket, numbersAnnounced,2))
+        assertFalse(rowClaimValidator(ticket, numbersAnnounced, 2))
 
     }
 
     @Test
-    fun `should return true for correct early five numbers claimed`()
-    {
+    fun `should return true for correct early five numbers claimed`() {
         val numbersAnnounced = arrayListOf(7, 25, 56, 64, 41, 83)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
         assertTrue(firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5))
 
     }
 
     @Test
-    fun `should return false for incorrect early five numbers claimed`()
-    {
+    fun `should return false for incorrect early five numbers claimed`() {
         val numbersAnnounced = arrayListOf(7, 25, 56, 64, 41, 83, 76)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
         assertFalse(firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5))
 
     }
 
     @Test
-    fun `should return false for incorrect early five numbers claimed late`()
-    {
+    fun `should return false for incorrect early five numbers claimed late`() {
         val numbersAnnounced = arrayListOf(7, 25, 56, 64, 41, 83, 77)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(9, 25, 56, 64, 83),
+            arrayListOf(7, 23, 38, 52, 80)
         )
         assertFalse(firstNumberOfMatchesValidator(ticket, numbersAnnounced, 5))
 
     }
 
     @Test
-    fun `should return false for any invalid claim`()
-    {
+    fun `should return false for any invalid claim`() {
         val numbersAnnounced = arrayListOf(7, 25, 56, 64, 41, 83, 77)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertFalse(validateClaim("Top Row",ticket, numbersAnnounced))
+        assertFalse(validateClaim("Top Row", ticket, numbersAnnounced))
 
     }
 
     @Test
-    fun `should return true for correct middle row claim `(){
-        val numbersAnnounced = arrayListOf(7, 25,23,38,52,80)
+    fun `should return true for correct middle row claim `() {
+        val numbersAnnounced = arrayListOf(7, 25, 23, 38, 52, 80)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertTrue(rowClaimValidator(ticket,numbersAnnounced,1))
+        assertTrue(rowClaimValidator(ticket, numbersAnnounced, 1))
     }
 
     @Test
-    fun `should return true for valid middle row claim`()
-    {
-        val numbersAnnounced = arrayListOf(7, 25,23,38,52,80)
+    fun `should return true for valid middle row claim`() {
+        val numbersAnnounced = arrayListOf(7, 25, 23, 38, 52, 80)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertTrue(validateClaim("Middle Row",ticket, numbersAnnounced))
-
-    }
-
-    @Test
-    fun `should return true for valid full house claim`()
-    {
-        val numbersAnnounced = arrayListOf(4,16,48,63,76,7,23,38,52,80,9,25,56,64,83)
-        val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
-        )
-        assertTrue(validateClaim("Full House",ticket, numbersAnnounced))
+        assertTrue(validateClaim("Middle Row", ticket, numbersAnnounced))
 
     }
 
     @Test
-    fun `should return false for invalid full house claim`()
-    {
-        val numbersAnnounced = arrayListOf(4,16,48,63,76,7,23,38,52,80,9,25,56)
+    fun `should return true for valid full house claim`() {
+        val numbersAnnounced = arrayListOf(4, 16, 48, 63, 76, 7, 23, 38, 52, 80, 9, 25, 56, 64, 83)
         val ticket = arrayListOf(
-            arrayListOf(4,16,48,63,76),
-            arrayListOf(7,23,38,52,80),
-            arrayListOf(9,25,56,64,83)
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
         )
-        assertFalse(validateClaim("Full House",ticket, numbersAnnounced))
+        assertTrue(validateClaim("Full House", ticket, numbersAnnounced))
 
+    }
+
+    @Test
+    fun `should return false for invalid full house claim`() {
+        val numbersAnnounced = arrayListOf(4, 16, 48, 63, 76, 7, 23, 38, 52, 80, 9, 25, 56)
+        val ticket = arrayListOf(
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
+        )
+        assertFalse(validateClaim("Full House", ticket, numbersAnnounced))
+
+    }
+
+//    @Test
+//    fun `should return true if claim is early five and ticket has both early five and middle row`() {
+//        val numbersAnnounced = arrayListOf(4, 16, 48, 63, 76, 7, 23, 38, 52, 80)
+//        val ticket = arrayListOf(
+//            arrayListOf(4, 16, 48, 63, 76),
+//            arrayListOf(7, 23, 38, 52, 80),
+//            arrayListOf(9, 25, 56, 64, 83)
+//        )
+//        assertTrue(validateClaim("Early Five", ticket, numbersAnnounced))
+//    }
+
+    @Test
+    fun `should return true if claim is middle row and ticket has both early five and middle row`() {
+        val numbersAnnounced = arrayListOf(4, 16, 48, 63, 76, 7, 23, 38, 52, 80)
+        val ticket = arrayListOf(
+            arrayListOf(4, 16, 48, 63, 76),
+            arrayListOf(7, 23, 38, 52, 80),
+            arrayListOf(9, 25, 56, 64, 83)
+        )
+        assertTrue(validateClaim("Middle Row", ticket, numbersAnnounced))
     }
 }
